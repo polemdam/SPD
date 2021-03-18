@@ -99,7 +99,29 @@ int main() {
         c_time.push_back(s_time[i] + jobs[i].p);
     }
 
+    /* Main goal */
+
     /* Schrage algorythm */
+    std::vector<job> N = jobs;
+    std::vector<job> G;
+    int k{};
+    int t = (*std::min_element(N.begin(), N.end(), [&](const auto &lhs, const auto &rhs) {
+        return lhs.r < rhs.r;
+    })).r;
+
+    while(G.empty() || N.empty()) {
+        while (N.size() && (*std::min_element(N.begin(), N.end(), [&](const auto &lhs, const auto &rhs) {
+            return lhs.r < rhs.r;
+        })).r <= t){
+            auto it = (std::min_element(N.begin(), N.end(), [&](const auto &lhs, const auto &rhs) {
+                return lhs.r < rhs.r;
+            }));
+        G.emplace_back(*it);
+        N.erase(it);
+    }
+    }
+
+
 
     
 
